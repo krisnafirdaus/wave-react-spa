@@ -1,11 +1,34 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import { Container } from "reactstrap";
+import NavbarComponent from "../component/NavbarComponent";
+
+class Post extends Component {
+  render() {
+    const { title } = this.props;
+    return <h5>{title}</h5>;
+  }
+}
 
 class Home extends Component {
+  state = { posts: [] };
+  componentDidMount() {
+    fetch("https://jsonplaceholder.typicode.com/todos")
+      .then((response) => response.json())
+      .then((result) => {
+        this.setState({ posts: result });
+      });
+  }
   render() {
+    const { posts } = this.state;
     return (
-      <div>
-        <h1>Home</h1>
-      </div>
+      <Fragment>
+        <NavbarComponent />
+        <Container className="p-4">
+          {posts.map((i) => (
+            <Post title={i.title} />
+          ))}
+        </Container>
+      </Fragment>
     );
   }
 }
