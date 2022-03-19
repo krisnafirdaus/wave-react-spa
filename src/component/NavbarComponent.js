@@ -38,6 +38,9 @@ class NavbarComponent extends Component {
             <NavItem className="px-2">
               <Link to="/about">About</Link>
             </NavItem>
+            <NavItem className="px-2">
+              <Link to="/contact">Contact</Link>
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>
